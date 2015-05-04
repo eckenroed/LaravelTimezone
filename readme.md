@@ -23,14 +23,14 @@ Include the above Javascript files in your views. `laravelTimezone.js` will auto
 ####Middleware
 Place **TimezoneMiddleware.php** in your `app\Http\Middleware` directory. Make sure you adjust any needed Namespace. Then open **app\Http\Kernal.php** and include the new Middleware in your `$middleware` array. 
 
-```
+```php
 'Acme\Http\Middleware\TimezoneMiddleware',
 ```
 
 ####Helpers
 There are some required helpers in `helpers.php` that will need to be included in your app. You can either copy and paste them into an existing helpers file, or you can update your composer.json file to automatically load the file. 
 
-```
+```json
 "autoload": {
 	"files": [
           "app/Helpers/helpers.php"
@@ -41,7 +41,7 @@ There are some required helpers in `helpers.php` that will need to be included i
 ####Eloquent Models
 In order to have your eloquent models convert date/time stored in your database to the users timezone (and back before persisting), simply include the `Timezone.php` trait on any models you want this functionality on.
 
-```
+```php
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword, SoftDeletes, Timezone;
